@@ -1,4 +1,4 @@
-module task-api
+module github.com/NonYodying/workflow
 
 go 1.23
 
@@ -8,10 +8,7 @@ require (
 	gorm.io/gorm v1.25.11
 )
 
-require (
-	github.com/fvbock/endless v0.0.0-20170109170031-447134032cb6 // indirect
-	github.com/joho/godotenv v1.5.1 // indirect
-)
+require github.com/joho/godotenv v1.5.1
 
 require (
 	github.com/bytedance/sonic v1.12.1 // indirect

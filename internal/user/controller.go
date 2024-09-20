@@ -3,9 +3,9 @@ package user
 import (
 	"fmt"
 	"net/http"
-	"task-api/internal/model"
 	"time"
 
+	"github.com/NonYodying/workflow/internal/model"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
@@ -41,7 +41,7 @@ func (controller Controller) Login(ctx *gin.Context) {
 	}
 	ctx.SetCookie(
 		"token",
-		fmt.Sprintf("Bearer %v", token), int(10*time.Second),
+		fmt.Sprintf("Bearer %v", token), int(2*time.Hour),
 		"/",
 		"localhost",
 		false,

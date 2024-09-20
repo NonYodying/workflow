@@ -1,7 +1,7 @@
 package item
 
 import (
-	"task-api/internal/model"
+	"github.com/NonYodying/workflow/internal/model"
 
 	"gorm.io/gorm"
 )
@@ -36,6 +36,16 @@ func (repo Repository) Find(query model.RequestFindItem) ([]model.Item, error) {
 	return results, nil
 }
 
+func (repo Repository) FindLatestID(query model.RequestFindItem) (model.Item, error) {
+	var result model.Item
+
+	if err := repo.Database.Last(&result, query).Error; err != nil {
+		return result, err
+	}
+
+	return result, nil
+}
+
 func (repo Repository) FindByID(id uint) (model.Item, error) {
 	var result model.Item
 
@@ -48,4 +58,12 @@ func (repo Repository) FindByID(id uint) (model.Item, error) {
 
 func (repo Repository) Replace(item model.Item) error {
 	return repo.Database.Model(&item).Updates(item).Error
+}
+
+func (repo Repository) Delete(id uint) error {
+	return repo.Database.Delete(&model.Item{}, id).Error
+}
+
+func (repo Repository) DeleteLatest(item model.Item) error {
+	return repo.Database.Model(&item).Delete(item).Error
 }

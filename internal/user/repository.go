@@ -1,8 +1,7 @@
 package user
 
 import (
-	"task-api/internal/model"
-
+	"github.com/NonYodying/workflow/internal/model"
 	"gorm.io/gorm"
 )
 

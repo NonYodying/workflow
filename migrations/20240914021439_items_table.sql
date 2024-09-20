@@ -3,6 +3,9 @@ CREATE TABLE
     items (
         id bigserial NOT NULL,
         title text NOT NULL,
+        amount int NOT NULL,
+        quantity int NOT NULL,
+        status text,
         PRIMARY KEY (id)
     );
 

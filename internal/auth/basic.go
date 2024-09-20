@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// basicAuth.go
 type Credential struct {
 	Username string
 	Password string
@@ -22,7 +23,6 @@ func BasicAuth(credentials []Credential) gin.HandlerFunc {
 			c.AbortWithStatus(http.StatusUnauthorized)
 			return
 		}
-
 		for _, v := range credentials {
 			if v.Username == username && v.Password == password {
 				c.Next()

@@ -8,12 +8,13 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
-	"task-api/internal/auth"
-	"task-api/internal/item"
-	"task-api/internal/mylog"
-	"task-api/internal/user"
+
 	"time"
 
+	"github.com/NonYodying/workflow/internal/auth"
+	"github.com/NonYodying/workflow/internal/item"
+	"github.com/NonYodying/workflow/internal/mylog"
+	"github.com/NonYodying/workflow/internal/user"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -71,6 +72,7 @@ func main() {
 		}
 		c.JSON(http.StatusOK, gin.H{"version": version})
 	})
+
 	r.GET("/test", func(ctx *gin.Context) {
 		fmt.Println("---- Test -----")
 		// nil, false
@@ -93,15 +95,17 @@ func main() {
 	// Register router
 	items := r.Group("/items")
 	// items.Use(mylog.Logger2())
-	// items.Use(auth.BasicAuth([]auth.Credential{
-	// 	{"admin", "secret"},
-	// 	{"admin2", "1234"},
-	// }))
+
 	items.Use(auth.Guard(os.Getenv("JWT_SECRET")))
 	{
 		items.POST("", controller.CreateItem)
 		items.GET("", controller.FindItems)
-		items.PATCH("/:id", controller.UpdateItemStatus)
+		items.GET("/:id", controller.GetLatest)
+		items.PUT("/:id", controller.UpdateLatestItem)
+		items.PATCH("/:id", controller.UpdateLatestItemStatus)
+		items.DELETE("/:id", controller.DeleteLatestItem)
+
+		items.PUT("/id/:id", controller.UpdateItem)
 	}
 
 	// Start server
