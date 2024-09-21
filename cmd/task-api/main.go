@@ -42,7 +42,8 @@ func main() {
 	// Connect database
 	db, err := gorm.Open(
 		postgres.Open(
-			"postgres://postgres:password@localhost:5432/task",
+			//"postgres://postgres:password@localhost:5432/task",
+			os.Getenv("DATABASE_URL"),
 		),
 	)
 	if err != nil {
