@@ -33,6 +33,12 @@ const Create = () => {
         }
     }
 
+    const handleCancle = async (e: React.FormEvent) => {
+        e.preventDefault()
+        router.push('/entry')
+    }
+
+
     return (
         <Card className="w-[350px]">
             <CardHeader>
@@ -78,7 +84,7 @@ const Create = () => {
                 </form>
             </CardContent>
             <CardFooter className="flex justify-between">
-                <Button variant="outline">Cancel</Button>
+                <Button onClick={handleCancle} variant="outline">Cancel</Button>
                 <Button onClick={handleSubmit}>Submit</Button>
             </CardFooter>
         </Card>

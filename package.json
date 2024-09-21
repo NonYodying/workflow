@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.5.0",
+    "@clerk/nextjs": "^5.6.0",
+    "@nextui-org/react": "^2.4.8",
     "@prisma/client": "^5.19.1",
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-label": "^2.1.0",
@@ -18,9 +21,11 @@
     "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "framer-motion": "^11.5.6",
     "inter": "^2.1.0",
     "lucide-react": "^0.445.0",
     "next": "14.2.13",
+    "next-auth": "^4.24.7",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.5.2",

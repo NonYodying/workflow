@@ -49,7 +49,7 @@ const Edit = ({ params }: { params: { id: string } }) => {
                 amount:Number(amount),
                 quantity:Number(quantity)
             })
-            router.push('/')
+            router.push('/entry')
         } catch (error) {
             console.error(error)
         }

@@ -31,6 +31,24 @@ export async function PUT(
   }
 }
 
+export async function PATCH(
+  req: Request,
+  { params }: { params: { id: string } },
+) {
+  try {
+    const { status } = await req.json()
+    return Response.json(await prisma.post.update({
+      where: { id: Number(params.id) },
+      data: { 
+       status },
+    }))
+  } catch (error) {
+    return new Response(error as BodyInit, {
+      status: 500,
+    })
+  }
+}
+
 export async function DELETE(
   req: Request,
   { params }: { params: { id: string } },
