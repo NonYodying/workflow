@@ -120,7 +120,7 @@ func main() {
 	// }
 
 	srv := &http.Server{
-		Addr:    ":2024",
+		Addr:    os.Getenv("PORT"),
 		Handler: r.Handler(),
 	}
 
